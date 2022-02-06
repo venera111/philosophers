@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/06 12:23:15 by qestefan         ###   ########.fr       */
+/*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
+/*   Updated: 2022/02/06 12:24:08 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
-int	main(int argc, char **argv)
-{
-	if (argc != 5 || argc != 6)
-		ft_perror("Error");
+# include <stdio.h>
+# include <stdlib.h>
 
-	return (0);
-}
+#endif
