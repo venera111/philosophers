@@ -6,11 +6,20 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:22 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/06 15:51:05 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:18:54 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_allocate(void *arg, size_t size)
+{
+	*(void **)arg = malloc(size); // выделение памяти для нескольких философов
+	if (*(void **)arg == NULL)
+		return (1);
+	memset(*(void **)arg, 0, size);
+	return (0);
+}
 
 int	ft_perror(char *finish)
 {
@@ -23,28 +32,29 @@ int	ft_perror(char *finish)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
-	long	num;
-	char	sign;
+	int			i;
+	int			neg;
+	long long	res;
 
-	num = 0;
-	sign = 1;
-	while (*str == ' ' || (*str <= '\r' && *str >= '\t'))
-		str++;
-	if ((*str == '-') || (*str == '+'))
-		if (*str++ == '-')
-			sign = -1;
-	while (*str >= '0' && *str <= '9')
+	i = 0;
+	res = 0;
+	neg = 1;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		num = 10 * num + (*str++ - '0');
-		if (num < 0)
-		{
-			if (sign < 0)
-				return (0);
-			else
-				return (-1);
-		}
+		if (str[i] == '-')
+			neg *= -1;
+		i++;
 	}
-	return (sign * num);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + neg * (str[i] - 48);
+		i++;
+		if (res > 2147483647 || res < -2147483648)
+			ft_perror("Error message : exceeding the int range");
+	}
+	if (!(str[i] >= '0' && str[i] <= '9') && str[i] != '\0')
+		ft_perror("Error message : number error");
+	return (res);
 }
