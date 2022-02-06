@@ -1,0 +1,5 @@
+{
+	"key": "option+cmd+k",
+	"command": "extension.42-comment",
+	"when": "editorTextFocus"
+}

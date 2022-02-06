@@ -2,5 +2,8 @@
 	"editor.tokenColorCustomizations": {
 		"comments": "",
 		"textMateRules": []
-	}
+	},
+	"editor.tokenColorCustomizations": {
+
+        "comments": "#777c7b"
 }
