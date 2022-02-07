@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/06 21:11:46 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:56:07 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@
 */
 typedef struct s_philosopher
 {
-	int	n; // номер философа
-
+	int				n; // номер философа
+	pthread_mutex_t	philo_mutex;
+	pthread_mutex_t	*left;
+	pthread_mutex_t	*right;
+	struct s_data	*data;
 } t_philosopher;
 
 /*
@@ -49,13 +52,12 @@ typedef struct s_data
 	t_philosopher	*philosophers; // структура философа
 	pthread_mutex_t	mutex; // взаимные исключения по стандарту POSIX
 	pthread_mutex_t	*forks; // вилки
-} t_data;
+}	t_data;
 
 /*
 ** Init and parsing
 */
 int		initialization_philosophers(t_data *data, int argc, char **argv);
-void	parsing_argv(t_data *data, int argc, char **argv);
 
 /*
 ** Utils

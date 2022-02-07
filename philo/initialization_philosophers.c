@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/06 21:20:58 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:56:25 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,28 @@ static int	init_philosophers2(t_data *data)
 	while (i < data->num_of_philosophers)
 	{
 		data->philosophers[i].n = i; // номер философа заполняем
-		
+		pthread_mutex_init(&data->forks[i], NULL); // инициалиация 5 мьютексов
+		pthread_mutex_init(&data->philosophers[i].philo_mutex, NULL); // инициалиация мьютекса внутри структуры философа
+		if (i == 0)
+		{
+			data->philosophers[i].left \
+				= &data->forks[data->num_of_philosophers - 1];
+		}
+		else
+			data->philosophers[i].left = &data->forks[i - 1];
+		data->philosophers[i].right = &data->forks[i];
+		data->philosophers[i].data = data; // сохраняем основную структуру в каждом философе
+		i++;
 	}
+	return (0);
 }
 
 int	initialization_philosophers(t_data *data, int argc, char **argv)
 {
 	parsing_argv(data, argc, argv); // парсим аргументы программы в структуру
-	if (check_data(data, argc)) // проверяем числа
+	if (check_data(data, argc)) // проверяем числа-аргументы
 		return (1);
-	if (init_philosophers2(data))
+	if (init_philosophers2(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
 		return (1);
 	return (0);
 }
