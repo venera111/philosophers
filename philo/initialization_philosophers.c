@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/07 19:56:25 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:34:36 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,22 @@ static int	init_philosophers2(t_data *data)
 	return (0);
 }
 
+static void	create_philosophers(t_data *data)
+{
+	int			i;
+	pthread_t	thread;
+
+	gettimeofday(&data->tv, NULL); // устанавливает время
+	i = 0;
+	while (i < data->num_of_philosophers)
+	{
+		data->philosophers[i].last_meal = data->tv; // присваиваем время последнего приема пищи философа/время создания
+		pthread_create(&data->philosophers[i].thread, NULL, \
+			action_philosopher, &data->philosophers[i]);
+		i++;
+	}
+}
+
 int	initialization_philosophers(t_data *data, int argc, char **argv)
 {
 	parsing_argv(data, argc, argv); // парсим аргументы программы в структуру
@@ -72,5 +88,6 @@ int	initialization_philosophers(t_data *data, int argc, char **argv)
 		return (1);
 	if (init_philosophers2(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
 		return (1);
+	create_philosophers(data);
 	return (0);
 }
