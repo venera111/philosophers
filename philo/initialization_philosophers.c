@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/07 20:34:36 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/12 10:02:29 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,15 @@ static int	init_philosophers2(t_data *data)
 		if (i == 0)
 		{
 			data->philosophers[i].left \
-				= &data->forks[data->num_of_philosophers - 1];
+				= &data->forks[data->num_of_philosophers - 1]; // присваиваем левую вилку
 		}
 		else
 			data->philosophers[i].left = &data->forks[i - 1];
-		data->philosophers[i].right = &data->forks[i];
-		data->philosophers[i].data = data; // сохраняем основную структуру в каждом философе
+		data->philosophers[i].right = &data->forks[i]; // присваиваем правую вилку
+		data->philosophers[i].data = data; // сохраняем указатель на основную структуру в каждом философе
 		i++;
 	}
 	return (0);
-}
-
-static void	create_philosophers(t_data *data)
-{
-	int			i;
-	pthread_t	thread;
-
-	gettimeofday(&data->tv, NULL); // устанавливает время
-	i = 0;
-	while (i < data->num_of_philosophers)
-	{
-		data->philosophers[i].last_meal = data->tv; // присваиваем время последнего приема пищи философа/время создания
-		pthread_create(&data->philosophers[i].thread, NULL, \
-			action_philosopher, &data->philosophers[i]);
-		i++;
-	}
 }
 
 int	initialization_philosophers(t_data *data, int argc, char **argv)
@@ -88,6 +72,5 @@ int	initialization_philosophers(t_data *data, int argc, char **argv)
 		return (1);
 	if (init_philosophers2(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
 		return (1);
-	create_philosophers(data);
 	return (0);
 }

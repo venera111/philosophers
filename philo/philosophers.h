@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/07 20:34:26 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/12 10:18:09 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philosopher
 	pthread_mutex_t	philo_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
-	struct s_data	*data;
+	struct s_data	*data; //указатель на общие данные
 	struct timeval	last_meal; // время последнего приема пищи
 	pthread_t		thread;
 } t_philosopher;
@@ -53,9 +53,11 @@ typedef struct s_data
 	int				time_to_sleep; // сон
 	int				num_of_meals; // кол-во приемов пищи каждого философа
 	t_philosopher	*philosophers; // структура философа
-	pthread_mutex_t	mutex; // взаимные исключения по стандарту POSIX
+	pthread_mutex_t	mutex; // mutex
 	pthread_mutex_t	*forks; // вилки
 	struct timeval	tv; // create time
+	int				finish;
+
 }	t_data;
 
 /*

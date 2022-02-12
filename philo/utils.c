@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:22 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/06 21:18:54 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/12 10:12:45 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,4 @@ int	ft_atoi(char *str)
 		ft_perror("Error message : number error");
 	return (res);
 }
+
