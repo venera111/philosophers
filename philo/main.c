@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 08:41:04 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:18:45 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	create_philosophers(t_data *data)
 	int			i;
 	pthread_t	thread;
 
-	gettimeofday(&data->tv, NULL); // устанавливает время
+	if (gettimeofday(&data->tv, NULL) != 0) // устанавливает время
+		ft_perror("tv pointer outside the accessible address space.");
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{

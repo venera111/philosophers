@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/12 10:18:09 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:57:22 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,31 @@ typedef struct s_data
 	t_philosopher	*philosophers; // структура философа
 	pthread_mutex_t	mutex; // mutex
 	pthread_mutex_t	*forks; // вилки
-	struct timeval	tv; // create time
+	struct timeval	tv; // create time, является структурой
 	int				finish;
-
 }	t_data;
 
 /*
 ** Init and parsing
 */
-int		initialization_philosophers(t_data *data, int argc, char **argv);
+int			initialization_philosophers(t_data *data, int argc, char **argv);
 
 /*
 ** Action
 */
-void	*action_philosopher(void *data);
+void		*action_philosopher(void *data);
 
 /*
 ** Utils
 */
-int		ft_atoi(char *str);
-int		ft_allocate(void *arg, size_t size);
+int			ft_atoi(char *str);
+int			ft_allocate(void *arg, size_t size);
+void		print_philosophers(t_philosopher *philosopher, char *str);
+long long	time_in_ms(struct timeval now);
 
 /*
 ** Error
 */
-int		ft_perror(char *finish);
+int			ft_perror(char *finish);
 
 #endif

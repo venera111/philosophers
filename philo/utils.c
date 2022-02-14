@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:22 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/12 10:12:45 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 09:59:06 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,24 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
+void	print_philosophers(t_philosopher *philosopher, char *str)
+{
+	long long		ms;
+	struct timeval	now;
+
+	pthread_mutex_lock(&philosopher->data->mutex);
+	gettimeofday(&now, NULL);
+	ms = time_in_ms(now) - time_in_ms(philosopher->data->tv);
+	if (!philosopher->data->finish)
+		printf("%lld\t%d\t%s\n", ms, philosopher->n + 1, str);
+	pthread_mutex_unlock(&philosopher->data->mutex);
+}
+
+long long	time_in_ms(struct timeval now)
+{
+	long long	ms;
+
+	ms = now.tv_sec * 1000; // получаем время в мс из структуры timeval
+	ms += now.tv_usec / 1000;
+	return (ms);
+}
