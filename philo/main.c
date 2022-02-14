@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 09:18:45 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:44:39 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	create_philosophers(t_data *data)
 		data->philosophers[i].last_meal = data->tv; // присваиваем время последнего приема пищи философа/время создания
 		pthread_create(&data->philosophers[i].thread, NULL, \
 			action_philosopher, &data->philosophers[i]); // создаем потоки, передавая функцию действий философа
+
 		i++;
 	}
 }

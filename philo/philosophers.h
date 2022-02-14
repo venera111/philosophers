@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 09:57:22 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:54:41 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 typedef struct s_philosopher
 {
 	int				n; // номер философа
+	int				num_of_meals;
 	pthread_mutex_t	philo_mutex;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
@@ -48,6 +49,7 @@ typedef struct s_philosopher
 typedef struct s_data
 {
 	int				num_of_philosophers; // количество философов
+	int				num_of_eat_finish;
 	int				time_to_die; // кол-во мс от последнего приема пищи или начала симуляции до смерти
 	int				time_to_eat; // отрезок времени приема пищи в мс
 	int				time_to_sleep; // сон
