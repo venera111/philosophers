@@ -6,12 +6,11 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/12 10:04:36 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 08:41:04 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
 
 static void	create_philosophers(t_data *data)
 {
