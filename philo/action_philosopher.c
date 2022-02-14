@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:33:25 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 10:35:06 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/14 10:56:52 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	eating(t_philosopher *philosopher)
 	long long	ms;
 
 	pthread_mutex_lock(&philosopher->philo_mutex); // блокируем выполнение кода для одного философа
-	
+
 }
 
 void	*action_philosopher(void *data)
