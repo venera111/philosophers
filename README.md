@@ -18,6 +18,14 @@ while thinking, they are not eating nor sleeping; and, of course, while sleeping
 - Philosophers don’t know if another philosopher is about to die.
 - No need to say that philosophers should avoid dying!
 
+### Usage
+```
+git clone https://github.com/venera111/philosophers.git
+cd philosophers/philo
+make
+./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+```
+
 ### Resources
 - Многопоточное программирование в Linux. Programming C/Linux [YouTube](https://www.youtube.com/watch?v=uFQwXtHsO4w)
 - POSIX Threads [csc.villanova.edu](http://www.csc.villanova.edu/~mdamian/threads/posixthreads.html#applications)
