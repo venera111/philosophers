@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 14:48:35 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 10:56:57 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void		print_philosophers(t_philosopher *philosopher, char *str);
 long long	time_in_ms(struct timeval now);
 
 /*
-** Observer
+** Waiter
 */
-void		*observer(void *arg);
+void		*waiter(void *arg);
 
 /*
 ** Error
