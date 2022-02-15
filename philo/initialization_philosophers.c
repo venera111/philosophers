@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 12:15:15 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:30:15 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ static int	start_philosophers(t_data *data)
 {
 	int	i;
 
-	if (ft_allocate(&data->philosophers, sizeof(t_philosopher) \
-		* data->num_of_philosophers) || ft_allocate(&data->forks, \
-		sizeof(pthread_mutex_t) * data->num_of_philosophers))
-		return (ft_perror(ERROR_MALLOC));
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{
@@ -70,6 +66,10 @@ int	initialization_philosophers(t_data *data, int argc, char **argv)
 	parsing_argv(data, argc, argv); // парсим аргументы программы в структуру
 	if (check_data(data, argc)) // проверяем числа-аргументы
 		return (1);
+	if (ft_allocate(&data->philosophers, sizeof(t_philosopher) \
+		* data->num_of_philosophers) || ft_allocate(&data->forks, \
+		sizeof(pthread_mutex_t) * data->num_of_philosophers))
+		return (ft_perror(ERROR_MALLOC));
 	if (start_philosophers(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
 		return (1);
 	return (0);

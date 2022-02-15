@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 12:21:36 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:19:44 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ long long	time_in_ms(struct timeval now);
 ** Waiter
 */
 void		*waiter(void *arg);
+void		*waiter_each_meal(void *arg);
 
 /*
 ** Error
