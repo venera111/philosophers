@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 14:26:11 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:15:43 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static void	create_philosophers(t_data *data)
 	int			i;
 	pthread_t	thread;
 
-	if (gettimeofday(&data->tv, NULL) != 0) // устанавливает время
-		ft_perror("tv pointer outside the accessible address space.");
+	if (gettimeofday(&data->tv, NULL) != 0)
+		ft_perror(ERROR_TV);
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{
-		data->philosophers[i].last_meal = data->tv; // присваиваем время последнего приема пищи философа/время создания
+		data->philosophers[i].last_meal = data->tv;
 		pthread_create(&data->philosophers[i].thread, NULL, \
-			action_philosopher, &data->philosophers[i]); // создаем потоки, передавая функцию действий философа
-		pthread_create(&thread, NULL, waiter, &data->philosophers[i]); // поток официанта который наблюдает
-		pthread_detach(thread); // отделяем поток наблюдения
+			action_philosopher, &data->philosophers[i]);
+		pthread_create(&thread, NULL, waiter, &data->philosophers[i]);
+		pthread_detach(thread);
 		i++;
 	}
 	if (data->num_of_meals != 0)
@@ -62,10 +62,10 @@ int	main(int argc, char **argv)
 		ft_perror(ERROR_ARGC);
 		exit(1);
 	}
-	memset(&data, 0, sizeof(data)); // заполняем нулями поля структуры
+	memset(&data, 0, sizeof(data));
 	if (initialization_philosophers(&data, argc, argv))
 		return (1);
 	create_philosophers(&data);
-	join_and_free_philosophers(&data); //присоединяем поток чтобы потом освободить
+	join_and_free_philosophers(&data);
 	return (0);
 }

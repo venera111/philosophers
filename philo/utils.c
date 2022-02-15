@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:22 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 12:28:52 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:25:29 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_allocate(void *arg, size_t size)
 {
-	*(void **)arg = malloc(size); // выделение памяти для нескольких философов
+	*(void **)arg = malloc(size);
 	if (*(void **)arg == NULL)
 		return (1);
 	memset(*(void **)arg, 0, size);
@@ -54,24 +54,24 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
-void	print_philosophers(t_philosopher *philosopher, char *str)
+void	print_status(t_philosopher *philosopher, char *str)
 {
-	long long		ms;
+	uint64_t		cur_time;
 	struct timeval	now;
 
 	pthread_mutex_lock(&philosopher->data->mutex);
 	gettimeofday(&now, NULL);
-	ms = time_in_ms(now) - time_in_ms(philosopher->data->tv);
+	cur_time = current_time(now) - current_time(philosopher->data->tv);
 	if (!philosopher->data->finish)
-		printf("%lld\t%d\t%s\n", ms, philosopher->n + 1, str);
+		printf("%lld\t%d\t%s\n", cur_time, philosopher->n + 1, str);
 	pthread_mutex_unlock(&philosopher->data->mutex);
 }
 
-long long	time_in_ms(struct timeval now)
+uint64_t	current_time(struct timeval now)
 {
-	long long	ms;
+	uint64_t	cur_time;
 
-	ms = now.tv_sec * 1000; // получаем время в мс из структуры timeval
-	ms += now.tv_usec / 1000;
-	return (ms);
+	cur_time = now.tv_sec * 1000;
+	cur_time += now.tv_usec / 1000;
+	return (cur_time);
 }

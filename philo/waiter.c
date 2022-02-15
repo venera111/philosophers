@@ -6,17 +6,17 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:56:35 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 14:32:43 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:27:29 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*waiter(void *arg) // функция которую выполняет официант
+void	*waiter(void *arg)
 {
 	t_philosopher	*philosopher;
 	struct timeval	now;
-	long long		ms;
+	uint64_t		time;
 
 	philosopher = arg;
 	while (!philosopher->data->finish)
@@ -24,13 +24,13 @@ void	*waiter(void *arg) // функция которую выполняет оф
 		pthread_mutex_lock(&philosopher->philo_mutex);
 		pthread_mutex_lock(&philosopher->data->mutex);
 		gettimeofday(&now, NULL);
-		ms = time_in_ms(now) - time_in_ms(philosopher->last_meal);
+		time = current_time(now) - current_time(philosopher->last_meal);
 		gettimeofday(&now, NULL);
-		if (ms >= philosopher->data->time_to_die \
+		if (time >= philosopher->data->time_to_die \
 			&& philosopher->data->finish == 0)
 		{
-			printf("%lld\t%d\t%s", \
-				time_in_ms(now) - time_in_ms(philosopher->data->tv), \
+			printf("%lld\t%d\t%s\n", \
+				current_time(now) - current_time(philosopher->data->tv), \
 				philosopher->n + 1, "died");
 			philosopher->data->finish = 1;
 		}

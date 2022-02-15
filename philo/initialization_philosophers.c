@@ -6,13 +6,13 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 12:30:15 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:16:09 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	check_data(t_data *data, int argc) // проверить ошибки на ввод ""
+static int	check_data(t_data *data, int argc)
 {
 	if (data->num_of_meals <= 0 && argc == 6)
 		return (ft_perror(ERROR_MEAL));
@@ -44,18 +44,18 @@ static int	start_philosophers(t_data *data)
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{
-		data->philosophers[i].n = i; // номер философа заполняем
-		pthread_mutex_init(&data->forks[i], NULL); // инициалиация 5 мьютексов
-		pthread_mutex_init(&data->philosophers[i].philo_mutex, NULL); // инициалиация мьютекса внутри структуры философа
+		data->philosophers[i].n = i;
+		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&data->philosophers[i].philo_mutex, NULL);
 		if (i == 0)
 		{
 			data->philosophers[i].left \
-				= &data->forks[data->num_of_philosophers - 1]; // присваиваем левую вилку
+				= &data->forks[data->num_of_philosophers - 1];
 		}
 		else
 			data->philosophers[i].left = &data->forks[i - 1];
-		data->philosophers[i].right = &data->forks[i]; // присваиваем правую вилку
-		data->philosophers[i].data = data; // сохраняем указатель на основную структуру в каждом философе
+		data->philosophers[i].right = &data->forks[i];
+		data->philosophers[i].data = data;
 		i++;
 	}
 	return (0);
@@ -63,14 +63,14 @@ static int	start_philosophers(t_data *data)
 
 int	initialization_philosophers(t_data *data, int argc, char **argv)
 {
-	parsing_argv(data, argc, argv); // парсим аргументы программы в структуру
-	if (check_data(data, argc)) // проверяем числа-аргументы
+	parsing_argv(data, argc, argv);
+	if (check_data(data, argc))
 		return (1);
 	if (ft_allocate(&data->philosophers, sizeof(t_philosopher) \
 		* data->num_of_philosophers) || ft_allocate(&data->forks, \
 		sizeof(pthread_mutex_t) * data->num_of_philosophers))
 		return (ft_perror(ERROR_MALLOC));
-	if (start_philosophers(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
+	if (start_philosophers(data))
 		return (1);
 	return (0);
 }
