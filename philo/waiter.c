@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:56:35 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 14:23:09 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:32:43 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,18 @@ void	*waiter(void *arg) // функция которую выполняет оф
 		gettimeofday(&now, NULL);
 		ms = time_in_ms(now) - time_in_ms(philosopher->last_meal);
 		gettimeofday(&now, NULL);
-
+		if (ms >= philosopher->data->time_to_die \
+			&& philosopher->data->finish == 0)
+		{
+			printf("%lld\t%d\t%s", \
+				time_in_ms(now) - time_in_ms(philosopher->data->tv), \
+				philosopher->n + 1, "died");
+			philosopher->data->finish = 1;
+		}
+		pthread_mutex_unlock(&philosopher->data->mutex);
+		pthread_mutex_unlock(&philosopher->philo_mutex);
 	}
+	return (NULL);
 }
 
 void	*waiter_each_meal(void *arg)
