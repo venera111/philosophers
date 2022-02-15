@@ -17,6 +17,7 @@ while thinking, they are not eating nor sleeping; and, of course, while sleeping
 - Philosophers don’t speak with each other.
 - Philosophers don’t know if another philosopher is about to die.
 - No need to say that philosophers should avoid dying!
+![image](https://user-images.githubusercontent.com/78787523/154023789-b2184c41-cedf-4536-b45c-d316f2b4037b.png)
 
 ### Usage
 ```
