@@ -18,6 +18,8 @@ while thinking, they are not eating nor sleeping; and, of course, while sleeping
 - Philosophers don’t know if another philosopher is about to die.
 - No need to say that philosophers should avoid dying!
 
+
+
 ### Usage
 ```
 git clone https://github.com/venera111/philosophers.git
