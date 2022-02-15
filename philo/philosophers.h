@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:36 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 10:56:57 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:21:36 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define ERROR_EAT "Error message : wrong time to eat.\n"
 # define ERROR_SLEEP "Error message : wrong time to sleep.\n"
 # define ERROR_MALLOC "Error message : not allocated with malloc.\n"
+# define ERROR_INT "Error message : exceeding the int range.\n"
+# define ERROR_ARG "Error message : number error.\n"
 
 # include <stdio.h> // printf
 # include <stdlib.h> // malloc
@@ -87,6 +89,6 @@ void		*waiter(void *arg);
 /*
 ** Error
 */
-int			ft_perror(char *finish);
+int			ft_perror(char *str);
 
 #endif

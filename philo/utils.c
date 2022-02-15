@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 12:18:22 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/14 09:59:06 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:21:16 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,9 @@ int	ft_allocate(void *arg, size_t size)
 	return (0);
 }
 
-int	ft_perror(char *finish)
+int	ft_perror(char *str)
 {
-	char	*start;
-
-	start = finish;
-	while (*finish)
-		finish++;
-	write(2, start, finish - start);
+	printf("%s", str);
 	return (1);
 }
 
@@ -52,10 +47,10 @@ int	ft_atoi(char *str)
 		res = res * 10 + neg * (str[i] - 48);
 		i++;
 		if (res > 2147483647 || res < -2147483648)
-			ft_perror("Error message : exceeding the int range");
+			ft_perror(ERROR_INT);
 	}
 	if (!(str[i] >= '0' && str[i] <= '9') && str[i] != '\0')
-		ft_perror("Error message : number error");
+		ft_perror(ERROR_ARG);
 	return (res);
 }
 

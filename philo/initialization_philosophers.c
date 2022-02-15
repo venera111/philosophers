@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/12 10:02:29 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:15:15 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	parsing_argv(t_data *data, int argc, char **argv)
 		data->num_of_meals = ft_atoi(argv[5]);
 }
 
-static int	init_philosophers2(t_data *data)
+static int	start_philosophers(t_data *data)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ int	initialization_philosophers(t_data *data, int argc, char **argv)
 	parsing_argv(data, argc, argv); // парсим аргументы программы в структуру
 	if (check_data(data, argc)) // проверяем числа-аргументы
 		return (1);
-	if (init_philosophers2(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
+	if (start_philosophers(data)) // заполняем для каждого философа его левую и правую вилки, его номер и сохраняем адрес основной структуры
 		return (1);
 	return (0);
 }
