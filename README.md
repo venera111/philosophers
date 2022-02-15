@@ -45,4 +45,7 @@ name  | prototype | description |
 ### Resources
 - Многопоточное программирование в Linux. Programming C/Linux [YouTube](https://www.youtube.com/watch?v=uFQwXtHsO4w)
 - POSIX Threads [csc.villanova.edu](http://www.csc.villanova.edu/~mdamian/threads/posixthreads.html#applications)
-
+- Unix Threads in C [YouTube](https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
+- Multi Threaded Programming (Arif Butt @ PUCIT) [YouTube](https://www.youtube.com/watch?v=OgnLaXwLC8Y)
+- Synchronization among Threads (Arif Butt @ PUCIT) [YouTube](https://www.youtube.com/watch?v=SvFr7rPWI3g&list=PL7B2bn3G_wfC-mRpG7cxJMnGWdPAQTViW&index=48)
+- 
