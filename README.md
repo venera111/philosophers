@@ -48,4 +48,7 @@ name  | prototype | description |
 - Unix Threads in C [YouTube](https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
 - Multi Threaded Programming (Arif Butt @ PUCIT) [YouTube](https://www.youtube.com/watch?v=OgnLaXwLC8Y)
 - Synchronization among Threads (Arif Butt @ PUCIT) [YouTube](https://www.youtube.com/watch?v=SvFr7rPWI3g&list=PL7B2bn3G_wfC-mRpG7cxJMnGWdPAQTViW&index=48)
-- 
+- Multithreaded Programming (POSIX pthreads Tutorial) [randu.org](https://randu.org/tutorials/threads/)
+- Philosophers [Notion](https://www.notion.so/Philosophers-2b872948598e4f0cba91c66d8b5ba821)
+- A small testing framework for 42's philosophers. [GitHub](https://github.com/nesvoboda/socrates)
+
