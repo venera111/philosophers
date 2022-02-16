@@ -6,13 +6,13 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 15:15:43 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:30:17 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	join_and_free_philosophers(t_data *data)
+static void	join_philosophers(t_data *data)
 {
 	int		i;
 
@@ -66,6 +66,6 @@ int	main(int argc, char **argv)
 	if (initialization_philosophers(&data, argc, argv))
 		return (1);
 	create_philosophers(&data);
-	join_and_free_philosophers(&data);
+	join_philosophers(&data);
 	return (0);
 }

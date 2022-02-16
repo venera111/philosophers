@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:33:25 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 15:38:21 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:10:30 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	eating(t_philosopher *philosopher)
 		current_time(philosopher->data->tv);
 	pthread_mutex_lock(&philosopher->data->mutex);
 	if (!philosopher->data->finish)
-		printf("%lld\t%d\t%s\n", time, philosopher->n + 1, "is eating");
+		printf("%lld\t%d\tis eating\n", time, philosopher->n + 1);
 	philosopher->num_of_meals += 1;
 	if (philosopher->num_of_meals == philosopher->data->num_of_meals)
 		philosopher->data->num_of_eat_finish += 1;

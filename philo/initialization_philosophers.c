@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 14:25:56 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 15:16:09 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:24:49 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ static int	start_philosophers(t_data *data)
 		pthread_mutex_init(&data->forks[i], NULL);
 		pthread_mutex_init(&data->philosophers[i].philo_mutex, NULL);
 		if (i == 0)
-		{
 			data->philosophers[i].left \
 				= &data->forks[data->num_of_philosophers - 1];
-		}
 		else
 			data->philosophers[i].left = &data->forks[i - 1];
 		data->philosophers[i].right = &data->forks[i];
@@ -66,6 +64,7 @@ int	initialization_philosophers(t_data *data, int argc, char **argv)
 	parsing_argv(data, argc, argv);
 	if (check_data(data, argc))
 		return (1);
+	pthread_mutex_init(&data->mutex, NULL);
 	if (ft_allocate(&data->philosophers, sizeof(t_philosopher) \
 		* data->num_of_philosophers) || ft_allocate(&data->forks, \
 		sizeof(pthread_mutex_t) * data->num_of_philosophers))

@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 10:56:35 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/15 15:27:29 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/16 10:26:46 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	*waiter(void *arg)
 		if (time >= philosopher->data->time_to_die \
 			&& philosopher->data->finish == 0)
 		{
-			printf("%lld\t%d\t%s\n", \
+			printf("%lld\t%d\tdied\n", \
 				current_time(now) - current_time(philosopher->data->tv), \
-				philosopher->n + 1, "died");
+				philosopher->n + 1);
 			philosopher->data->finish = 1;
 		}
 		pthread_mutex_unlock(&philosopher->data->mutex);
