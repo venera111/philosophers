@@ -6,11 +6,11 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:33:25 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/16 10:10:30 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:36:35 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include <philosophers.h>
 
 static void	take_fork(t_philosopher *philosopher)
 {

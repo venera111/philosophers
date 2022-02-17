@@ -42,6 +42,20 @@ name  | prototype | description |
 [**pthread_mutex_lock**](https://pubs.opengroup.org/onlinepubs/7908799/xsh/pthread_mutex_lock.html) | int pthread_mutex_lock(pthread_mutex_t * mutex); | locks the object referenced by mutex. If the mutex is already locked, the calling thread blocks until the mutex becomes available. This operation returns with the mutex object referenced by mutex in the locked state with the calling thread as its owner			|
 [**pthread_mutex_unlock**](https://pubs.opengroup.org/onlinepubs/7908799/xsh/pthread_mutex_lock.html) | int pthread_mutex_unlock(pthread_mutex_t * mutex); |releases the mutex object referenced by mutex.	|
 
+### Test ideas
+- To kill a philosopher:
+```
+./philo 4 310 200 100
+```
+- To make them eat endlessly:
+```
+./philo 4 410 200 200
+```
+- Let the philosopher eat his fill:
+```
+./philo 4 410 200 200 5
+```
+
 ### Resources
 - Многопоточное программирование в Linux. Programming C/Linux [YouTube](https://www.youtube.com/watch?v=uFQwXtHsO4w)
 - POSIX Threads [csc.villanova.edu](http://www.csc.villanova.edu/~mdamian/threads/posixthreads.html#applications)

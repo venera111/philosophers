@@ -1,61 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 12:49:54 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/16 10:30:17 by qestefan         ###   ########.fr       */
+/*   Created: 2022/02/16 11:02:09 by qestefan          #+#    #+#             */
+/*   Updated: 2022/02/17 11:18:43 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 static void	join_philosophers(t_data *data)
 {
-	int		i;
+	int	i;
+	int	status;
 
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{
-		pthread_join(data->philosophers[i].thread, NULL);
-		pthread_mutex_destroy(&data->philosophers[i++].philo_mutex);
+		waitpid(data->philosophers[i].pid, &status, 0);
+		sem_close(data->philosophers[i].sem);
+		free(data->philosophers[i].name);
+		i++;
 	}
 	free(data->philosophers);
-	i = 0;
-	while (i < data->num_of_philosophers)
-		pthread_mutex_destroy(&data->forks[i++]);
-	free(data->forks);
+	sem_close(data->finish);
+	sem_close(data->action);
+	sem_close(data->forks);
+	sem_close(data->num_of_eat_finish);
 }
 
-static void	create_philosophers(t_data *data)
+static void	fork_philosophers(t_data *data)
 {
 	int			i;
-	pthread_t	thread;
 
-	if (gettimeofday(&data->tv, NULL) != 0)
-		ft_perror(ERROR_TV);
+	gettimeofday(&data->tv, NULL);
 	i = 0;
 	while (i < data->num_of_philosophers)
 	{
 		data->philosophers[i].last_meal = data->tv;
-		pthread_create(&data->philosophers[i].thread, NULL, \
-			action_philosopher, &data->philosophers[i]);
-		pthread_create(&thread, NULL, waiter, &data->philosophers[i]);
-		pthread_detach(thread);
-		i++;
-	}
-	if (data->num_of_meals != 0)
-	{
-		pthread_create(&thread, NULL, waiter_each_meal, data);
-		pthread_detach(thread);
+		data->philosophers[i].pid = fork();
+		if (data->philosophers[i].pid == 0)
+			return (action_philosopher(&data->philosophers[i]));
+		else if (data->philosophers[i].pid < 0)
+		{
+			ft_perror(ERROR_FORK);
+			exit(1);
+		}
+		++i;
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-	t_data	data;
+	t_data		data;
+	pthread_t	thread;
 
 	if (argc != 5 && argc != 6)
 	{
@@ -65,7 +66,10 @@ int	main(int argc, char **argv)
 	memset(&data, 0, sizeof(data));
 	if (initialization_philosophers(&data, argc, argv))
 		return (1);
-	create_philosophers(&data);
+	fork_philosophers(&data);
+	if (data.num_of_meals != 0)
+		pthread_create(&thread, NULL, waiter_each_meal, &data);
+	pthread_create(&thread, NULL, waiter_finish, &data);
 	join_philosophers(&data);
 	return (0);
 }
