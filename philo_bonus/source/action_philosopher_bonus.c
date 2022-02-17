@@ -6,7 +6,7 @@
 /*   By: qestefan <qestefan@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 10:32:05 by qestefan          #+#    #+#             */
-/*   Updated: 2022/02/17 11:06:41 by qestefan         ###   ########.fr       */
+/*   Updated: 2022/02/17 11:43:52 by qestefan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	take_fork(t_philosopher *philosopher)
 
 static void	eating(t_philosopher *philosopher)
 {
-	uint64_t	time;
-
 	sem_wait(philosopher->sem);
 	gettimeofday(&philosopher->last_meal, NULL);
 	print_status(philosopher, "is eating");
